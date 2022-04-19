@@ -1,1 +1,9 @@
+# keys
 private
+
+# builds
+prod-build
+/build
+
+# dependencies
+/node_modules
