@@ -7,3 +7,6 @@ prod-build
 
 # dependencies
 /node_modules
+
+# eb extensions
+.ebextensions

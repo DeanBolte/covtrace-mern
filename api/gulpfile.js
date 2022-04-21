@@ -6,6 +6,8 @@ const log = require('fancy-log');
 var exec = require('child_process').exec;
 
 const paths = {
+  eb_extend: "../.ebextensions",
+  build_extend: "../prod-build/.ebextensions",
   prod_build: '../prod-build',
   server_file_name: 'server.bundle.js',
   react_src: '../react-covtrace/build/**/*',
@@ -19,8 +21,14 @@ function clean()  {
 }
 
 function createProdBuildFolder() {
+  return createFolder(paths.prod_build);
+}
 
-  const dir = paths.prod_build;
+function createEbExtensionsFolder() {
+  return createFolder(paths.build_extend);
+}
+
+function createFolder(dir) {
   log(`Creating the folder if not exist  ${dir}`)
   if(!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
@@ -49,6 +57,12 @@ function copyNodeJSCodeTask() {
   log('building and copying server code into the directory')
   return src(['package.json', 'server.js'])
         .pipe(dest(`${paths.prod_build}`))
+}
+
+function addEbExtensions() {
+  log('adding eb configs into the directory')
+  return src([`${paths.eb_extend}/00_change_npm_permissions.config`])
+        .pipe(dest(`${paths.build_extend}`))
 }
 
 function zippingTask() {
