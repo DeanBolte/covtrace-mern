@@ -1,32 +1,28 @@
 import { useState } from 'react'
 
 const AddCovid = ({ onAdd }) => {
-    const [text, setText] = useState('')
-    const [day, setDay] = useState('')
-    const [reminder, setReminder] = useState(false)
+    const [date, setDate] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if(!text) {
-            alert('please add task')
+        if(!date) {
+            alert('please add a date')
             return
         }
 
-        onAdd({ text, day, reminder })
+        onAdd({ date })
 
-        setText('')
-        setDay('')
-        setReminder(false)
+        setDate('')
     }
 
   return (
-    <form className="log">
+    <form className="log" onSubmit={onSubmit}>
       <label>Log contraction of covid</label>
 
       <div className='form-control'>
         <label>Date</label>
-        <input />
+        <input type='text' placeholder='DD/MM/YYYY' value={date} onChange={(e) => setDate(e.target.value)} />
       </div>
             
       <input type='submit' value='Save Task' className='btn btn-block'/>

@@ -9,8 +9,6 @@ import Admin from './components/Admin';
 import Header from "./components/Header";
 
 function App() {
-  
-
   return (
     <Router>
       <div className="container">

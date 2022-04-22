@@ -23,13 +23,19 @@ const Home = () => {
     },
   ]);
 
+  const addLocation = (entry) => {
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newEntry = { id, ...entry }
+    setEntries([...entries, newEntry])
+  }
+
   return (
     <div>
       <div className="home">
         <TimeLine entries={entries} />
 
         <div className="home-forms">
-          <AddLocation />
+          <AddLocation onAdd={addLocation} />
           <AddCovid />
         </div>
       </div>
