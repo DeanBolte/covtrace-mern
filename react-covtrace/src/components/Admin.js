@@ -1,7 +1,7 @@
 const Admin = () => {
   return (
     <div>
-      
+      TODO: Admin
     </div>
   )
 }
